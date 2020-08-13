@@ -1,0 +1,23 @@
+{% extends "main/header.html" %}
+{% block content %}
+	<div class="row">
+		{% for blog in myBlogs %}
+		    <div class="col s12 m4">
+		      <div class="card hoverable">
+		        <div class="card-content black-text">
+		          <span class="card-title">{{blog.myBlog_title}}</span>
+		          <p>{{blog.myBlog_author}}</p>
+		          <p>{{blog.myBlog_datetime}}</p>
+		        </div>
+		        <div class="card-action">
+		          <a href="/{{blog.id}}">view</a>
+		    
+		        </div>
+		      </div>
+		    </div>
+		{% endfor %}
+	</div>	
+{% endblock%}
+	
+	
+		

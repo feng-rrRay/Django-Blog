@@ -1,0 +1,15 @@
+{% extends "main/header.html" %}
+{% block content %}
+	<form method="POST">
+		{% csrf_token %}
+		{{form.as_p}}
+	  <p>
+		<button class="btn" style="background-color: blue; color:white" type="submit">SUBMIT</button>
+	  </p>
+	</form>	
+
+	If you already have an account, <a href="/admin"><strong>Login</strong></a> instead
+{% endblock%}
+	
+	
+		
