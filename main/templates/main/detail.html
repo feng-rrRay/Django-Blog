@@ -16,7 +16,7 @@
         <div class="sharethis-inline-share-buttons"></div>
         
         
-        <p>{{ blog.myBlog_content | safe }}</p>
+        <p>{{ blog.myBlog_content | linebreaksbr }}</p>
                 <!-- put h tag in div give div an id and link # with that id to jump directly-->
                
 
@@ -29,6 +29,70 @@
 
       
 
-  </div>
-</div>
+      </div>
+    </div>
+
+    
+  
+
+        <div class="row">
+          <div class="container">
+            <div class="input-field col s12">
+              <div class="col s12 m9 l10" style="padding-right: 20px;">
+                <div class="card z-depth-0" style="margin-top: 80px;">
+                  <h5 class="left-align">评论</h5>
+
+                      <ul class="collection">
+                        {% for comments in commentset %}
+                        <li class="collection-item avatar">
+                          <img alt="" src="http://1.gravatar.com/avatar/a9c44b4ebec42ca44da01d0640a90c8e?s=64&amp;d=mm&amp;r=g" srcset="http://1.gravatar.com/avatar/a9c44b4ebec42ca44da01d0640a90c8e?s=128&amp;d=mm&amp;r=g 2x" class="circle">
+                          <span class="title">{{comments.comment_author}}</span>
+                          <p>{{comments.comment_datetime}}<br>
+                             {{comments.comment_content}}
+                          </p>
+                          
+                        </li>
+                        {% endfor %}
+                      </ul>
+                    
+                    <form method="post">
+                      {% csrf_token %}
+                      {{ form.as_p }}
+                      
+                 
+                    <button class="btn" style="background-color: blue; color:white" type="submit">发布</button>
+                    </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <footer class="page-footer, indigo darken-3">
+          <div class="container">
+            <div class="row">
+              <div class="col l6 s12">
+                <h5 class="white-text">MyBlog_Demo</h5>
+                <p class="white-text">© 2020 Copyright FRR</p>
+              </div>
+              <div class="col l4 offset-l2 s12">
+                <h5 class="white-text">Relevant Links</h5>
+                <ul>
+                  <li><a class="grey-text text-lighten-3" href="https://docs.djangoproject.com/">Django Offical Docs</a></li>
+                  <li><a class="grey-text text-lighten-3" href="https://materializecss.com/">Materialize Css</a></li>
+                  <li><a class="grey-text text-lighten-3" href="https://stackoverflow.com/">StackOverflow</a></li>
+                  <li><a class="grey-text text-lighten-3" href="https://pythonprogramming.net/">Python Programming Tutorials</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="footer-copyright">
+            <div class="container">
+            <br>
+            
+            </div>
+          </div>
+        </footer>
 {% endblock %}
