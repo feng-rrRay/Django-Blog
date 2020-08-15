@@ -68,12 +68,16 @@ def detail(request, myBlog_id):
 		form = CommentForm(request.POST)
         # check whether it's valid:
 		if form.is_valid():
-            # process the data in form.cleaned_data as required
-			new_comment = comment(comment_content=form.cleaned_data.get('comment_content'),
-            					  comment_article=blog, 
-            					  comment_datetime=timezone.now(),
-            					  comment_author=request.user)
-			new_comment.save()
+			if request.user.is_authenticated:
+	            # process the data in form.cleaned_data as required
+				new_comment = comment(comment_content=form.cleaned_data.get('comment_content'),
+	            					  comment_article=blog, 
+	            					  comment_datetime=timezone.now(),
+	            					  comment_author=request.user)
+				new_comment.save()
+			else:
+				messages.info(request, '请先登录/注册再进行评论')
+				return redirect("/login")
             # ...
             # redirect to a new URL:
 			form = CommentForm()
