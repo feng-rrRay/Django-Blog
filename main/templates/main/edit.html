@@ -1,0 +1,58 @@
+{% extends "main/header.html" %}
+{% block content %}
+
+
+
+
+  <!-- Start of rows div -->
+  
+        <div class="row">
+          <div class="container">
+           
+                  <h5 class="left-align">编辑</h5>
+
+                      
+                    <form method="post">
+                      {% csrf_token %}
+                      <div class="form-group">
+                        <div>
+                          {{ form.media }}
+                          {{ form.as_p }}
+                        </div>
+                      </div>
+                      
+                 
+                    <button class="btn" style="background-color: blue; color:white" type="submit">发布</button>
+                    </form>
+             
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <footer class="page-footer, indigo darken-3">
+          <div class="container">
+            <div class="row">
+              <div class="col l6 s12">
+                <h5 class="white-text">MyBlog_Demo</h5>
+                <p class="white-text">© 2020 Copyright FRR</p>
+              </div>
+              <div class="col l4 offset-l2 s12">
+                <h5 class="white-text">Relevant Links</h5>
+                <ul>
+                  <li><a class="grey-text text-lighten-3" href="https://docs.djangoproject.com/">Django Offical Docs</a></li>
+                  <li><a class="grey-text text-lighten-3" href="https://materializecss.com/">Materialize Css</a></li>
+                  <li><a class="grey-text text-lighten-3" href="https://stackoverflow.com/">StackOverflow</a></li>
+                  <li><a class="grey-text text-lighten-3" href="https://pythonprogramming.net/">Python Programming Tutorials</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="footer-copyright">
+            <div class="container">
+            <br>
+            
+            </div>
+          </div>
+        </footer>
+{% endblock %}

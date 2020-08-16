@@ -27,5 +27,6 @@ urlpatterns = [
     path("register/", views.register, name="register"),
     path("logout/", views.logout_request, name="logout"),
     path("login/", views.login_request, name="login"),
+    path('edit/', views.edit, name="edit"),
     path('<myBlog_id>/', views.detail, name="detail"),
 ]

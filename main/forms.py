@@ -1,7 +1,8 @@
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django import forms
-from .models import comment
+from .models import comment, myBlog
+from ckeditor.widgets import CKEditorWidget
 
 class NewUserForm(UserCreationForm):
 	email = forms.EmailField(required=True)
@@ -25,5 +26,13 @@ class CommentForm(forms.Form):
 	class Meta:
 		model = comment
 		fields = ("comment_content")
+
+class EditForm(forms.Form):
+	myBlog_title = forms.CharField(label='请输入标题', max_length=50)
+	myBlog_content = forms.CharField(widget=CKEditorWidget())
+
+	class Meta:
+		model = myBlog
+		fields = ("myBlog_title", "myBlog_content")
 	
 		

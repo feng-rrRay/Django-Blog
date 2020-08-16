@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from .models import myBlog, comment
-from .forms import NewUserForm, CommentForm
+from .forms import NewUserForm, CommentForm, EditForm
 from django.http import HttpResponse
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, logout, authenticate
@@ -89,6 +89,31 @@ def detail(request, myBlog_id):
 	return render(request = request,
 				  template_name = "main/detail.html",
 				  context = {"blog":blog, "commentset":commentset, "form":form})
+
+def edit(request):
+	if request.method == 'POST':
+		form = EditForm(request.POST)
+		if form.is_valid():
+			if request.user.is_authenticated:
+	            # process the data in form.cleaned_data as required
+				new_blog = myBlog(myBlog_title=form.cleaned_data.get('myBlog_title'),
+	            				   myBlog_content=form.cleaned_data.get('myBlog_content'), 
+	            					  myBlog_datetime=timezone.now(),
+	            					  myBlog_author=request.user)
+				new_blog.save()
+			else:
+				messages.info(request, '请先登录/注册再进行创作')
+				return redirect("/login")
+            # ...
+            # redirect to a new URL:
+			form = EditForm()
+	else:
+		form = EditForm()
+
+	return render(request = request,
+				  template_name = "main/edit.html",
+				  context = {"form":form})
+
 
 
 
